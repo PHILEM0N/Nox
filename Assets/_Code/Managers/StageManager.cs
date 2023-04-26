@@ -25,12 +25,12 @@ public class StageManager : MonoBehaviour
     [SerializeField] private DialogueSystem dialogueSystem;
 
     // Texts
-    private const string NoneText = "이곳은 아무것도 없습니다.";
-    private const string BattleText = "전투가 시작됩니다.(예정)";
-    private const string GetResourceText = "자원을 얻습니다.(예정)";
+    private const string NoneText = "이곳에는 아무것도 없습니다.";
+    private const string BattleText = "적이 나타났습니다. 전투 발생.";
+    private const string GetResourceText = "아이템을 획득했습니다.";
     
     // Error Texts
-    private const string NodeTypeErrorText = "유효하지 낳은 노드 타입입니다.";
+    private const string NodeTypeErrorText = "??????? ???? ??? ???????.";
 
 
     private void Start()
@@ -75,7 +75,7 @@ public class StageManager : MonoBehaviour
             // Check if the target node is connected to the current node
             if (!player.currentNode.connectedNodes.Contains(targetNode))
             {
-                errorDialog.SetErrorText("이동할 수 없는 노드입니다.");
+                errorDialog.SetErrorText("????? ?? ???? ???????.");
                 errorDialog.Show();
                 return;
             }
@@ -111,8 +111,8 @@ public class StageManager : MonoBehaviour
                 errorDialog.Show();
                 break;
             case NodeType.Battle:
-                //errorDialog.SetErrorText(BattleText);
-                //errorDialog.Show();
+                errorDialog.SetErrorText(BattleText);
+                errorDialog.Show();
                 if(!isVisitBattle)
                 {
                     isVisitBattle = true;
@@ -120,8 +120,8 @@ public class StageManager : MonoBehaviour
                 }
                 break;
             case NodeType.GetResource:
-                //errorDialog.SetErrorText(GetResourceText);
-                //errorDialog.Show();
+                errorDialog.SetErrorText(GetResourceText);
+                errorDialog.Show();
                 if(!isVisitResources)
                 {
                     isVisitResources = true;
